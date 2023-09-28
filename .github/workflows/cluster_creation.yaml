@@ -54,10 +54,8 @@ jobs:
                  --dry-run \
                  -o yaml > $NAME.yaml
 
-      - name: Creating cluster from config
-        run: |
+  
              kops create -f $NAME.yaml --state $KOPS_STATE_STORE
-             kops create secret --name $NAME sshpublickey admin -i ~/.ssh/id_rsa.pub
              kops update cluster $NAME --yes
              kops rolling-update cluster $NAME --yes
         
