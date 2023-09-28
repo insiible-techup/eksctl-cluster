@@ -17,8 +17,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          verbosity: 'true'
+      
+
+
+      - name: Set environment variables
+        run: |
+            echo "CLUSTER_NAME=${{ github.event.inputs.cluster-name }}" >> $GITHUB_ENV
+            echo "REGION=${{ github.event.inputs.region }}" >> $GITHUB_ENV
+            echo "PUB_KEY=${{ secrets.pub_key }}" >> $GITHUB_ENV
 
       - name: Install eksctl
         run: |
@@ -36,11 +42,7 @@ jobs:
        
       - name: Create EKS Cluster
         run: |
-          eksctl delete cluster \
-            --name ${{ inputs.cluster-name }} \
-            --region ${{ inputs.region }}
-        # Additional eksctl configuration options can be added here.
-       
+          eksctl create cluster -f cluster.yaml
 
       - name: Configure kubectl
         run: aws eks --region ${{ inputs.region }} update-kubeconfig --name ${{ inputs.cluster-name }}
