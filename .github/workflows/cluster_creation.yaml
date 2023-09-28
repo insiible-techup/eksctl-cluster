@@ -18,6 +18,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Install eksctl
+        run: |
+          # Install eksctl
+          sudo curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64" -o /usr/local/bin/eksctl
+          sudo chmod +x /usr/local/bin/eksctl
+       
+
       - name: Set up AWS CLI
         uses: aws-actions/configure-aws-credentials@v1
         with:
