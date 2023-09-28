@@ -37,7 +37,7 @@ jobs:
           aws-region: ${{ inputs.region }}
 
      
-      - name: Create KOPs Cluster
+      - name: Generate KOPs Cluster config
         run: |
              export NAME=${{ inputs.cluster-name }}
              export KOPS_STATE_STORE=s3://${{ inputs.kops_state_store}}
@@ -54,7 +54,12 @@ jobs:
                  --dry-run \
                  -o yaml > $NAME.yaml
 
-      - name: view content
-        run: ls
+      - name: Creating cluster from config
+        run: |
+             kops create -f $NAME.yaml
+             kops create secret --name $NAME sshpublickey admin -i ~/.ssh/id_rsa.pub
+             kops update cluster $NAME --yes
+             kops rolling-update cluster $NAME --yes
+        
 
       
