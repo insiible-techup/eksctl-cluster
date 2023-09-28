@@ -24,7 +24,7 @@ jobs:
         run: |
             echo "CLUSTER_NAME=${{ github.event.inputs.cluster-name }}" >> $GITHUB_ENV
             echo "REGION=${{ github.event.inputs.region }}" >> $GITHUB_ENV
-            echo "PUB_KEY=${{ secrets.pub_key }}" >> $GITHUB_ENV
+            echo "PUB_KEY=${{ secrets.PUB_KEY }}" >> $GITHUB_ENV
 
       - name: Install eksctl
         run: |

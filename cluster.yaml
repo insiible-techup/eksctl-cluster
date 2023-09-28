@@ -2,8 +2,8 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: $CLUSTER_NAME
-  region: $REGION
+  name: {{ .Env.CLUSTER_NAME }}
+  region: {{ .Env.REGION }}
 
 nodeGroups:
   - name: ng-1
@@ -17,4 +17,4 @@ nodeGroups:
     desiredCapacity: 2
     volumeSize: 40
     ssh:
-      publicKeyPath: $PUB_KEY
+      publicKeyPath: {{ .Env.PUB_KEY }}
