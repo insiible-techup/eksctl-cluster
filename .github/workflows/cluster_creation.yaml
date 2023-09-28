@@ -20,10 +20,8 @@ jobs:
 
       - name: Install eksctl
         run: |
-          # Install eksctl
-          sudo curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64" -o /usr/local/bin/eksctl
-          sudo chmod +x /usr/local/bin/eksctl
-          eksctl version
+            sudo apt install eksctl
+            eksctl version
        
 
       - name: Set up AWS CLI
