@@ -36,7 +36,7 @@ jobs:
        
       - name: Create EKS Cluster
         run: |
-          eksctl create cluster \
+          eksctl delete cluster \
             --name ${{ inputs.cluster-name }} \
             --region ${{ inputs.region }}
         # Additional eksctl configuration options can be added here.
