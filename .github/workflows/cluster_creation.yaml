@@ -42,7 +42,7 @@ jobs:
              export NAME=${{ inputs.cluster-name }}
              export KOPS_STATE_STORE=s3://${{ inputs.kops_state_store}}
              kops create cluster $NAME \
-                 --zones "us-east-1a,us-east-1b,us-east-c" \
+                 --zones "us-east-1a,us-east-1b,us-east-1c" \
                  --control-plane-zones "us-east-1a,us-east-1b,us-east-1c" \
                  --networking calico \
                  --topology private \
