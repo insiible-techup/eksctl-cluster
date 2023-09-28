@@ -40,7 +40,7 @@ jobs:
       - name: Generate KOPs Cluster config
         run: |
              export NAME=${{ inputs.cluster-name }}
-             export KOPS_STATE_STORE=s3://${{ inputs.kops_state_store}}
+             export KOPS_STATE_STORE="s3://${{ inputs.kops_state_store}}"
              kops create cluster $NAME \
                  --zones "us-east-1a,us-east-1b,us-east-1c" \
                  --control-plane-zones "us-east-1a,us-east-1b,us-east-1c" \
@@ -56,7 +56,7 @@ jobs:
 
       - name: Creating cluster from config
         run: |
-             kops create -f $NAME.yaml
+             kops create -f $NAME.yaml --state $KOPS_STATE_STORE
              kops create secret --name $NAME sshpublickey admin -i ~/.ssh/id_rsa.pub
              kops update cluster $NAME --yes
              kops rolling-update cluster $NAME --yes
