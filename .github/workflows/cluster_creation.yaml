@@ -39,20 +39,22 @@ jobs:
      
       - name: Create KOPs Cluster
         run: |
-             export NAME=${{ inputs.cluster_name }}
+             export NAME=${{ inputs.cluster-name }}
              export KOPS_STATE_STORE=s3://${{ inputs.kops_state_store}}
              kops create cluster $NAME \
                  --zones "us-east-1a,us-east-1b,us-east-c" \
-                 --master-zones "us-east-1a,us-east-1b,us-east-1c" \
+                 --control-plane-zones "us-east-1a,us-east-1b,us-east-1c" \
                  --networking calico \
                  --topology private \
                  --bastion \
                  --node-count 3 \
                  --node-size t2.micro \
                  --kubernetes-version v1.6.6 \
-                 --master-size t2.micro \
+                 --control-plane-size t2.micro \
                  --dry-run \
                  -o yaml > $NAME.yaml
-        
+
+      - name: view content
+        run: ls
 
       
