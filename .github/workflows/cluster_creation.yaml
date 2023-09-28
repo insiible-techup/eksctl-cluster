@@ -55,7 +55,7 @@ jobs:
                  -o yaml > $NAME.yaml
 
   
-         
+
              kops update cluster $NAME --yes
              kops rolling-update cluster $NAME --yes
         
