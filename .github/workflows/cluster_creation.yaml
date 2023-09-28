@@ -20,6 +20,7 @@ jobs:
 
       - name: Install eksctl
         run: |
+            sudo apt update
             sudo apt install eksctl
             eksctl version
        
