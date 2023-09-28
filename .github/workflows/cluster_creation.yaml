@@ -55,9 +55,9 @@ jobs:
                  -o yaml > $NAME.yaml
 
   
-             kops create -f $NAME.yaml --state $KOPS_STATE_STORE
+         
              kops update cluster $NAME --yes
              kops rolling-update cluster $NAME --yes
         
-
+   # kops create -f $NAME.yaml --state $KOPS_STATE_STORE
       
