@@ -49,7 +49,7 @@ jobs:
                  --bastion \
                  --node-count 3 \
                  --node-size t2.micro \
-                 --kubernetes-version v1.6.6 \
+                 --kubernetes-version 1.25\
                  --control-plane-size t2.micro \
                  --dry-run \
                  -o yaml > $NAME.yaml
